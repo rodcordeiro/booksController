@@ -1,5 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Text, ScrollView, ActivityIndicator, Platform } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 
 import api from '../services/api'
 
@@ -38,6 +40,14 @@ export default function ListBooks(){
     } else {
         return (
             <ScrollView style={styles.container}>
+                <RectButton style={styles.addButton}>
+                    <Text>
+                        <Feather 
+                            name="plus-circle"
+                            color="#fff"
+                        />
+                    </Text>
+                </RectButton>
                 {
                     books.map((book,index)=>(
                         <View key={book.id} style={styles.bookField}>
@@ -98,5 +108,12 @@ const styles = StyleSheet.create({
         fontFamily: (Platform.OS === 'ios') ? 'Courier New':'serif',
         maxWidth:'97%',
         color:'#f4f4f499'
+    },
+    addButton:{
+        position:'absolute',
+        right:20,
+        top:10,
+        zIndex:4,
+        
     }
 })
